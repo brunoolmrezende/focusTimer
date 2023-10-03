@@ -28,6 +28,8 @@ export function reset() {
     state.isRunning = false;
     document.documentElement.classList.remove('running')
 
+    state.seconds = 0
+
     timer.updateDisplay()
 
     sounds.buttonPress.play()
@@ -45,6 +47,9 @@ export function addTime() {
     let seconds = el.seconds.textContent
 
     minutes = minutes > 60 ? 60 : minutes
+
+    state.minutes = minutes
+    state.seconds = seconds
     
     timer.updateDisplay(minutes, seconds)
 
@@ -56,6 +61,9 @@ export function removeTime() {
     let seconds = el.seconds.textContent
 
     minutes = minutes < 0 ? 0 : minutes
+
+    state.minutes = minutes
+    state.seconds = seconds
 
     timer.updateDisplay(minutes, seconds)
 
