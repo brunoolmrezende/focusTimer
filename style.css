@@ -1,0 +1,166 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: hsla(0, 0%, 100%, 1);
+    --text-color: hsla(240, 6%, 21%, 1);
+
+    --controls-button-color: hsla(240, 6%, 21%, 1);
+    --button-toggle: hsla(240, 5%, 7%, 1);
+
+    --sound-button-default-bg-color: hsla(240, 9%, 89%, 1);
+    --sound-button-chosen-bg-color: hsla(194, 97%, 31%, 1);
+
+    --sound-button-color-primary: hsla(240, 5%, 7%, 1);
+    --sound-button-color-secondary: hsla(0, 0%, 100%, 1);
+
+    --ff: 'Roboto', sans-serif;
+    
+    font-size: clamp(40%, 1% + 2vw, 62.5%);
+}
+
+html.dark {
+    --bg-color:hsla(194, 5%, 7%, 1);
+    --text-color: hsla(194, 40%, 98%, 1);
+    --controls-button-color: hsla(194, 40%, 98%, 1);
+    --button-toggle: hsla(240, 40%, 98%, 1);
+}
+
+html.dark .ph-moon,
+html:not(.dark) .ph-sun {
+    display: none;
+}
+
+body {
+    font-family: var(--ff);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+
+    display: grid;
+    height: 100vh;
+    place-content: center;
+
+    position: relative;
+}
+
+#toggle-mode {
+    position: fixed;
+    top: 3.2rem;
+    right: 3.2rem;
+
+    font-size: 3.2rem;
+    line-height: 0;
+
+    background: none;
+    border: none;
+
+    cursor: pointer;
+
+    color: var(--button-toggle);
+}
+
+#app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 19.2rem;
+    align-items: center;
+}
+
+.focusTimer {
+    display: grid;
+    gap: 1.7rem;
+    place-items: center;
+}
+
+#timer {
+    font-size: 12.6rem;
+    font-weight: 700;
+    line-height: normal;
+    display: grid;
+    grid-template-columns: max-content max-content max-content;
+}
+
+#controls {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+}
+
+#controls button {
+    background: none;
+    border: none;
+
+    font-size: 4.8rem;
+    color: var(--controls-button-color);
+
+    cursor: pointer;
+}
+
+.sr-only {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    overflow: hidden;
+
+    margin: -1px;
+    padding: 0px;
+    border: 0;
+    appearance: none;
+}
+
+#sounds {
+    display: grid;
+    gap: 3.2rem;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
+
+#sounds button {
+    width: 100%;
+    height: 15.2rem;
+    font-size: 5.5rem;
+    
+    background-color: var(--sound-button-default-bg-color);
+    color: var(--sound-button-color-primary);
+
+    border: none;
+    border-radius: 2.4rem;
+
+    cursor: pointer;
+
+    transition: all 350ms ease;
+}
+
+#sounds .chosen {
+    background-color: var(--sound-button-chosen-bg-color);
+    color: var(--sound-button-color-secondary);
+}
+
+#sounds button:hover {
+    transform: scale(1.1);
+}
+
+
+/* controls */
+
+html:not(.running) .ph-pause-circle,
+html:not(.running) .ph-stop-circle,
+html.running .ph-play-circle,
+html.running .ph-timer {
+    display: none;
+}
+
+@media (max-width: 1000px) {
+    #app {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10rem;
+    }
+
+    #sounds button:hover {
+        transform: scale(1);
+    }
+}
